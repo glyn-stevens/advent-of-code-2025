@@ -1,5 +1,5 @@
 use aoc25::{Input, load_input};
-use itertools::{Itertools};
+use itertools::Itertools;
 use rstest::rstest;
 fn main() {
     let lines = load_input(2, Input::Puzzle);
@@ -47,15 +47,9 @@ fn numbers_with_n_repeats(range: (u64, u64), n: u32) -> Vec<u64> {
 }
 
 fn next_number_with_n_repeats(start: u64, n: u32) -> u64 {
-    let start_str = next_num_with_length_as_multiple_of_n(start, n).to_string();
-    let mut chunks: Vec<u64> = start_str
-        .chars()
-        .chunks(start_str.len() / n as usize)
-        .into_iter()
-        .map(|chunk| chunk.collect::<String>().parse::<u64>().unwrap())
-        .collect();
-    let first_part = chunks.remove(0);
-
+    let start_str = next_num_with_length_thats_multiple_of_n(start, n).to_string();
+    let (first_part_str, _) = start_str.split_at(start_str.len() / n as usize);
+    let first_part: u64 = first_part_str.parse().unwrap();
     if repeat_number(first_part, n) >= start {
         repeat_number(first_part, n)
     } else {
@@ -71,7 +65,7 @@ fn repeat_number(num_to_repeat: u64, n: u32) -> u64 {
         .unwrap()
 }
 
-fn next_num_with_length_as_multiple_of_n(start: u64, n: u32) -> u64 {
+fn next_num_with_length_thats_multiple_of_n(start: u64, n: u32) -> u64 {
     let digits = start.to_string().len() as u32;
     if digits % n == 0 {
         start
@@ -123,7 +117,7 @@ mod tests {
     #[case(1000_0000, 4, 1000_0000)]
     #[case(2828255673, 5, 2828255673)]
     fn test_correct_number_of_digits(#[case] start: u64, #[case] n: u32, #[case] expected: u64) {
-        assert_eq!(next_num_with_length_as_multiple_of_n(start, n), expected);
+        assert_eq!(next_num_with_length_thats_multiple_of_n(start, n), expected);
     }
 
     #[test]
@@ -140,5 +134,6 @@ mod tests {
     #[test]
     fn test_part_b() {
         assert_eq!(4174379265, solve_part_b(&load_input(2, Input::Test)[0]));
+        assert_eq!(45283684555, solve_part_b(&load_input(2, Input::Puzzle)[0]));
     }
 }
