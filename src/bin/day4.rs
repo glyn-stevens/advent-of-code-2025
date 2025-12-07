@@ -1,7 +1,5 @@
 use aoc25::{Input, load_input};
-use itertools::Itertools;
 use std::collections::HashMap;
-use std::fmt::Display;
 
 const DAY: u8 = 4;
 
@@ -27,10 +25,6 @@ fn main() {
 }
 
 fn solve_part_a(lines: &[String]) -> usize {
-    let size = Coord {
-        x: lines[0].len() as i32,
-        y: lines.len() as i32,
-    };
     let grid: Vec<Vec<State>> = lines.iter().map(|l| parse_line(&l)).collect();
     filled_location_with_num_filled_neighbours(&grid)
         .iter()
