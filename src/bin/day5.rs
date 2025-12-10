@@ -1,5 +1,5 @@
 use aoc25::{Input, load_input};
-use itertools::{any};
+use itertools::any;
 use std::slice::Iter;
 const DAY: u8 = 5;
 
