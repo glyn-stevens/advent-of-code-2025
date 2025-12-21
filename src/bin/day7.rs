@@ -1,5 +1,4 @@
 use aoc25::{Input, load_input};
-use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
 
 const DAY: u8 = 7;
