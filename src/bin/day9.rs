@@ -44,9 +44,7 @@ fn plot(lines: &[String]) {
         .caption("Day 9 points", ("sans-serif", 40))
         .build_cartesian_2d(0..100_000, 0..100_000)
         .unwrap();
-
     ctx.configure_mesh().draw().unwrap();
-
     ctx.draw_series(
         points
             .iter()
@@ -54,6 +52,7 @@ fn plot(lines: &[String]) {
     )
     .unwrap();
 }
+
 fn solve_part_a(lines: &[String]) -> u64 {
     let all_points = lines.iter().map(parse_line).collect();
     sorted_sizes(&all_points)[0]
@@ -129,6 +128,7 @@ fn create_corner(before: &Point, centre: &Point, after: &Point) -> Corner {
         compatible_as: get_corner_type(before, centre, after),
     }
 }
+
 fn get_corner_type(before: &Point, centre: &Point, after: &Point) -> Vec<CornerType> {
     // Illustration of all 8 corner types. Corners going clockwise.
     // (x,y) = (0,0) is the top left corner.
@@ -263,6 +263,7 @@ fn sorted_sizes(points: &Vec<Point>) -> Vec<u64> {
 }
 
 fn square_size(a: Point, b: Point) -> u64 {
+    // Square size is inclusive of both start and end points so add one to each length
     ((a.x as i64 - b.x as i64 + 1).abs() * (a.y as i64 - b.y as i64 + 1).abs()) as u64
 }
 
