@@ -88,7 +88,7 @@ fn resolve_circuits_with_new_connection(
     next_circuits
 }
 
-fn point_pairs_sorted_by_distance(lines: &[String]) -> Vec<(PointPair)> {
+fn point_pairs_sorted_by_distance(lines: &[String]) -> Vec<PointPair> {
     let coords: Vec<_> = lines.iter().map(parse_line).collect();
 
     let mut all_pairs: Vec<(PointPair, f64)> = Vec::new();

@@ -1,5 +1,4 @@
 use aoc25::{Input, load_input};
-use itertools::Itertools;
 
 const DAY: u8 = 6;
 
