@@ -5,6 +5,7 @@ use std::path::Path;
 pub enum Input {
     Puzzle,
     Test,
+    TestB,
 }
 
 pub fn load_input(day: u8, part: Input) -> Vec<String> {
@@ -17,6 +18,7 @@ pub fn load_input_iterator(day: u8, part: Input) -> io::Lines<io::BufReader<fs::
     let suffix = match part {
         Input::Puzzle => "",
         Input::Test => "_test",
+        Input::TestB => "_test_b",
     };
     load_file(Path::new(&format!("data/inputs/day{day}{suffix}.txt")))
 }
